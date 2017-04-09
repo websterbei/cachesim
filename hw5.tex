@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\setmarginsrb{1in}{0.5in}{1in}{0.2in}{12pt}{11mm}{0pt}{11mm}
+\begin{document}
+	\section{Question 1:}
+	There are two possible policies for write-miss: write-non-allocate or write allocate. If we choose to use write-non-allocate with write back, on a write hit, only the cache is updated but not the main memory; on a write miss, only the main memory is updated but not the cache. Therefore, subsequent writes to the missed block will continue to miss and hence hinder the performance of the computer. However, if write-back is combined with write-allocate, the missed block will be brought into the cache and subsequent writes or reads will hit the block, resulting in high performance. Due to temporal locality, it is also likely that the same block will be written or read soon.
+	\section{Question 2:}
+	\begin{align*}
+		Latency = 2ns \times 90\% + 10ns \times 10\% = 2.8ns
+	\end{align*}
+	\section{Question 3:}
+	\subsection{(a)}
+	\begin{align*}
+		\mbox{Number of Virtual Pages} = \frac{2^{64} \mbox{ bytes}}{32 \mbox{ kibibytes/page}} = 2^{64-15}\ pages = 2^{49}\ pages
+	\end{align*}
+	\subsection{(b)}
+	\begin{align*}
+		\mbox{Number of Physical Pages} = \frac{8\times 2^{10} \times 2^{10} \times 2^{10} \mbox{bytes}}{32 \mbox{ kibibytes/page}} = 2^{33-15}\ pages = 2^{18}\ pages
+	\end{align*}
+	\subsection{(c)}
+	\begin{align*}
+		\mbox{Number of Offset Bits} = \log_{2}^{2^{15} bytes} = 15\\
+		\mbox{Number of VPN Bits} = 64 - 15 = 49 \\
+		\mbox{Number of PPN Bits} = 33 - 15 = 18
+	\end{align*}
+	49 bits of VPN are mapped to 18 bits of PPN.
+	\subsection{(d)}
+	Each PTE needs to hold both PPN and VPN, therefore the number of bits needed for each PTE will be 49 + 18 = 67 bits. The closest integral number of bytes needed will be 9 bytes.
+	\subsection{(e)}
+	\begin{align*}
+		\mbox{Number of PTEs on a Page} = \frac{32\mbox{ KibiByte}}{9\mbox{Bytes/PTE}} = 3640 PTEs
+	\end{align*}
+	\subsection{(f)}
+	\begin{align*}
+		\mbox{Number of Pointers on a Page} = \frac{32\mbox{ KibiByte}}{8\mbox{Bytes/Pointer}} = 4096 Pointers
+	\end{align*}
+	\subsection{(g)}
+	\begin{align*}
+		\mbox{Number of Bytes of Flat Page Table} = \mbox{Number of PTEs} \times \mbox{Number of Bytes per PTE} = 9\mbox{ Bytes} \times 2^{49} = 5.0665496e+15 Bytes
+	\end{align*}
+	\subsection{(h)}
+	\begin{align*}
+		(25012)_{10} = (110000110110100)_{2}
+	\end{align*}
+	The page offset before and after translation should not change and it is the last 15 bits of the number above, which is $(110000110110100)_{2}$ or $(25012)_{10}$
+	\subsection{(i)}
+	No. TLB miss simply means that the page table entry is not cached in the TLB. TLB miss results in a routine to check PT and update TLB. Only if after searching through PT and it was found out that the PTE is not even in PT (page on the disk instead of physical memory) will a page fault happen.
+\end{document}

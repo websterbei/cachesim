@@ -1,0 +1,11 @@
+store 0x000010 4 12345678
+load 0x000010 1
+load 0x000011 3
+store 0x000032 2 4321
+store 0xd00024 2 abcd
+store 0x0a0030 4 2468ace0
+load 0x000030 4
+load 0x0a0033 3
+load 0xd00020 6
+store 0x00ff2e 1 3c
+load 0x0ac910 1
